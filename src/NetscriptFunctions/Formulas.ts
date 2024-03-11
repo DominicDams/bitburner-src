@@ -43,6 +43,7 @@ import {
   calculateWantedPenalty,
   calculateAscensionMult,
   calculateAscensionPointsGain,
+  calculateExperienceGain,
 } from "../Gang/formulas/formulas";
 import { favorToRep as calculateFavorToRep, repToFavor as calculateRepToFavor } from "../Faction/formulas/favor";
 import { repFromDonation } from "../Faction/formulas/donation";
@@ -370,6 +371,12 @@ export function NetscriptFormulas(): InternalAPI<IFormulas> {
         const points = helpers.number(ctx, "points", _points);
         checkFormulasAccess(ctx);
         return calculateAscensionMult(points);
+      },
+      experienceGain: (ctx) => (_member, _task) => {
+        const member = helpers.gangMember(ctx, _member);
+        const task = helpers.gangTask(ctx, _task);
+        checkFormulasAccess(ctx);
+        return calculateExperienceGain(member, task);
       },
     },
     work: {

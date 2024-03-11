@@ -4863,6 +4863,13 @@ interface GangFormulas {
    * @returns The calculated ascension mult.
    */
   ascensionMultiplier(points: number): number;
+  /**
+   * Calculate experience gained
+   * @param member - Member info from {@link Gang.getMemberInformation | getMemberInformation}
+   * @param task - Task info from {@link Gang.getTaskStats | getTaskStats}
+   * @returns The calculated experience for each skill, in a six element array
+   */
+  experienceGain(member: GangMemberInfo, task: GangTaskStats): [number, number, number, number, number, number];
 }
 
 /**
